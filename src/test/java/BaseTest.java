@@ -15,10 +15,10 @@ public class BaseTest {
     @BeforeEach
     public void setUpTest()throws SQLException {
         con = DbConnection.getConnection();
-        Browser browsers = new Browser();
-        driver = browsers.getDriver("chrome");
-        driver.get("https://advantageonlineshopping.com/");
-        home = new HomePageLocator(driver);
+       // Browser browsers = new Browser();
+        //driver = browsers.getDriver("chrome");
+        //driver.get("https://advantageonlineshopping.com/");
+       // home = new HomePageLocator(driver);
         // checkout = new CheckoutLocators(driver);
 
     }
@@ -26,6 +26,7 @@ public class BaseTest {
     @AfterEach
     public void browserClose() throws SQLException {
         //driver.close();
+        //driver.quit();
         con.close();
     }
 }

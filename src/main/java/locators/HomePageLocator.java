@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HomePageLocator {
     private final WebDriver driver;
     private WebDriverWait wait;
-    private String linkEspecialOffer = "a[translate='SPACIAL_OFFER']";
+    private String linkEspecialOffer = "a[translate='SPECIAL_OFFER']";
     private String btnSeeOffer = "see_offer_btn";
     private String btnSearch = "menuSearch";
     private String fieldSearch = "autoComplete";

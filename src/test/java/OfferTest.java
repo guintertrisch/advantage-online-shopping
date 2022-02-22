@@ -1,7 +1,7 @@
 import dto.OfferDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import utils.PaymentCalcultor;
+import utils.PaymentCalculator;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -55,7 +55,7 @@ public class OfferTest extends BaseTest {
         home.clicarNoBotaoSearch();
         home.pesquisar(offerDtoExpected.getName_product());
         Float amountUnitary = searchResult.getAmountUnitary();
-        float amountExpected = PaymentCalcultor.getAmountPayment(quantity, amountUnitary);
+        float amountExpected = PaymentCalculator.getAmountPayment(quantity, amountUnitary);
 
         searchResult.selectProduct();
         offerDetail.setColor(Color.RED.toString());

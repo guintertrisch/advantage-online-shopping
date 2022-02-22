@@ -1,6 +1,6 @@
 package utils;
 
-public class PaymentCalcultor {
+public class PaymentCalculator {
 
     public static Float getAmountPayment(int quantity, float amount) {
 

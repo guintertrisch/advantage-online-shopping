@@ -1,3 +1,5 @@
+package dto;
+
 public class OfferDto {
     private String idmassas;
     private String name_product;
@@ -6,7 +8,7 @@ public class OfferDto {
     private String display_resolution;
     private String display_size;
     private String memory;
-    private String operation_system;
+    private String operating_system;
     private String processor;
     private String touchscreen;
     private String weight;
@@ -60,12 +62,12 @@ public class OfferDto {
         this.memory = memory;
     }
 
-    public String getOperation_system() {
-        return operation_system;
+    public String getOperating_system() {
+        return operating_system;
     }
 
-    public void setOperation_system(String operation_system) {
-        this.operation_system = operation_system;
+    public void setOperating_system(String operating_system) {
+        this.operating_system = operating_system;
     }
 
     public String getProcessor() {

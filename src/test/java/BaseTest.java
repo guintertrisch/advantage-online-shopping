@@ -1,3 +1,5 @@
+import locators.HomePageLocator;
+import locators.OfferDetailLocator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -9,17 +11,17 @@ public class BaseTest {
     public WebDriver driver;
     public Connection con;
     public HomePageLocator home;
-    //public CheckoutLocators checkout;
+    public OfferDetailLocator offerDetail;
 
 
     @BeforeEach
-    public void setUpTest()throws SQLException {
+    public void setUpTest() throws SQLException {
         con = DbConnection.getConnection();
-       // Browser browsers = new Browser();
-        //driver = browsers.getDriver("chrome");
-        //driver.get("https://advantageonlineshopping.com/");
-       // home = new HomePageLocator(driver);
-        // checkout = new CheckoutLocators(driver);
+        Browser browsers = new Browser();
+        driver = browsers.getDriver("chrome");
+        driver.get("https://advantageonlineshopping.com/");
+        home = new HomePageLocator(driver);
+        offerDetail = new OfferDetailLocator(driver);
 
     }
 

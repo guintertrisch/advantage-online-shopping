@@ -22,6 +22,8 @@ public class OfferDetailLocator {
     private String colorBlue = "span[class='bunny productColor ng-scope BLUE']";
     private String addToCart = "button[name='save_to_cart']";
     private String color = "span[class='ng-binding']";
+    private String increment = "div[increment-value-attr='+']";
+    private String checkOutPopUp = "checkOutPopUp";
 
 
     public OfferDetailLocator(WebDriver driver) {
@@ -58,10 +60,21 @@ public class OfferDetailLocator {
             case "GRAY":
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorGray))).click();
                 break;
-            case "PURPLE":
-                System.out.println("Numero muito grande");
+            case "RED":
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorRed))).click();
                 break;
 
         }
+    }
+
+    public void setQuantity(int quantity) {
+        for (int i = 1; i < quantity; i++) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(increment))).click();
+        }
+
+    }
+
+    public void clickOnCheckout() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(checkOutPopUp))).click();
     }
 }

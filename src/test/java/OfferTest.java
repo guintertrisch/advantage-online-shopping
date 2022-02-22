@@ -1,7 +1,9 @@
 import dto.OfferDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import utils.PaymentCalcultor;
 
+import java.awt.*;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -12,8 +14,6 @@ public class OfferTest extends BaseTest {
 
     @Test
     public void deveRetornarEspecificacoesComSucesso() throws InterruptedException {
-        OfferDao offerDao = new OfferDao(con);
-        OfferDto offerDtoExpected = offerDao.getOffer();
         home.clicarNaOpcaoSpecialOffer();
         home.clicarNoBotaoSeeOffer();
 
@@ -35,20 +35,39 @@ public class OfferTest extends BaseTest {
 
     @Test
     public void deveAltearCor() throws InterruptedException {
-        OfferDao offerDao = new OfferDao(con);
-        OfferDto offerDtoExpected = offerDao.getOffer();
 
         home.clicarNaOpcaoSpecialOffer();
         home.clicarNoBotaoSeeOffer();
 
         offerDetail.setColor(offerDtoExpected.getColor());
         offerDetail.addToCard();
-
+        String colorActual = offerDetail.getColor();
+        assertEquals(offerDtoExpected.getColor(), colorActual);
         System.out.println(offerDetail.getColor());
 
 
     }
 
+    @Test
+    public void checkout() throws InterruptedException {
+        int quantity = 2;
+
+        home.clicarNoBotaoSearch();
+        home.pesquisar(offerDtoExpected.getName_product());
+        Float amountUnitary = searchResult.getAmountUnitary();
+        float amountExpected = PaymentCalcultor.getAmountPayment(quantity, amountUnitary);
+
+        searchResult.selectProduct();
+        offerDetail.setColor(Color.RED.toString());
+        offerDetail.setQuantity(quantity);
+        offerDetail.addToCard();
+        offerDetail.clickOnCheckout();
+
+       // offerDao.setOfferColor(Color.RED.toString(),offerDtoExpected.getIdmassas());
+
+
+
+    }
 
     @AfterEach
     public void close() throws SQLException {

@@ -17,6 +17,7 @@ public class BaseTest {
     public SearchResultLocator searchResult;
     public OfferDao offerDao;
     OfferDto offerDtoExpected;
+
     @BeforeEach
     public void setUpTest() throws SQLException {
         con = DbConnection.getConnection();
@@ -34,8 +35,8 @@ public class BaseTest {
 
     @AfterEach
     public void browserClose() throws SQLException {
-        //driver.close();
-        //driver.quit();
+        driver.close();
+        driver.quit();
         con.close();
     }
 }

@@ -13,7 +13,7 @@ public class OfferTest extends BaseTest {
 
 
     @Test
-    public void deveRetornarEspecificacoesComSucesso() throws InterruptedException {
+    public void shouldReturnSpecsWithSuccess() {
         home.clicarNaOpcaoSpecialOffer();
         home.clicarNoBotaoSeeOffer();
 
@@ -34,7 +34,7 @@ public class OfferTest extends BaseTest {
     }
 
     @Test
-    public void deveAltearCor() throws InterruptedException {
+    public void shouldChangeColorWithSuccess() {
 
         home.clicarNaOpcaoSpecialOffer();
         home.clicarNoBotaoSeeOffer();
@@ -49,7 +49,7 @@ public class OfferTest extends BaseTest {
     }
 
     @Test
-    public void checkout() throws InterruptedException {
+    public void shouldCompleteCheckoutWithSuccess() {
         int quantity = 2;
 
         home.clicarNoBotaoSearch();
@@ -63,8 +63,7 @@ public class OfferTest extends BaseTest {
         offerDetail.addToCard();
         offerDetail.clickOnCheckout();
 
-       // offerDao.setOfferColor(Color.RED.toString(),offerDtoExpected.getIdmassas());
-
+        // offerDao.setOfferColor(Color.RED.toString(),offerDtoExpected.getIdmassas());
 
 
     }

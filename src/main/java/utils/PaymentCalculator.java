@@ -2,8 +2,9 @@ package utils;
 
 public class PaymentCalculator {
 
-    public static Float getAmountPayment(int quantity, float amount) {
+    public static String getAmountPayment(int quantity, String amount) {
+        int valueTotal = Integer.parseInt(amount) * quantity;
 
-        return amount * quantity;
+        return String.valueOf(valueTotal);
     }
 }

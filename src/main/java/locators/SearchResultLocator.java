@@ -13,7 +13,7 @@ public class SearchResultLocator {
 
     public SearchResultLocator(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
+        this.wait = new WebDriverWait(driver, 45);
     }
 
 
@@ -21,8 +21,9 @@ public class SearchResultLocator {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(idProduct))).click();
     }
 
-    public float getAmountUnitary() {
-        String value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(amount))).getText().replace("$", "");
-        return Float.parseFloat(String.valueOf(value));
+    public String getAmountUnitary() {
+        String value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(amount))).getText()
+                .replace("$", "").replace(".", "").replace(",", "");
+        return value;
     }
 }

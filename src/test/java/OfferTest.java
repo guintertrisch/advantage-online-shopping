@@ -1,10 +1,7 @@
 import dto.OfferDto;
-import org.junit.jupiter.api.AfterEach;
+import enums.ColorEnum;
 import org.junit.jupiter.api.Test;
 import utils.PaymentCalculator;
-
-import java.awt.*;
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,8 +11,8 @@ public class OfferTest extends BaseTest {
 
     @Test
     public void shouldReturnSpecsWithSuccess() {
-        home.clicarNaOpcaoSpecialOffer();
-        home.clicarNoBotaoSeeOffer();
+        home.clickOnOptionSpecialOffer();
+        home.clickOnButtonSeeOffer();
 
         OfferDto offerDtoAcutal = offerDetail.getDetailOffer();
 
@@ -36,40 +33,50 @@ public class OfferTest extends BaseTest {
     @Test
     public void shouldChangeColorWithSuccess() {
 
-        home.clicarNaOpcaoSpecialOffer();
-        home.clicarNoBotaoSeeOffer();
+        home.clickOnOptionSpecialOffer();
+        home.clickOnButtonSeeOffer();
 
         offerDetail.setColor(offerDtoExpected.getColor());
-        offerDetail.addToCard();
+        offerDetail.addToCart();
         String colorActual = offerDetail.getColor();
         assertEquals(offerDtoExpected.getColor(), colorActual);
-        System.out.println(offerDetail.getColor());
-
 
     }
 
     @Test
     public void shouldCompleteCheckoutWithSuccess() {
-        int quantity = 2;
+        int quantity = 6;
 
-        home.clicarNoBotaoSearch();
-        home.pesquisar(offerDtoExpected.getName_product());
-        Float amountUnitary = searchResult.getAmountUnitary();
-        float amountExpected = PaymentCalculator.getAmountPayment(quantity, amountUnitary);
+        home.clickOnButtonSearch();
+        home.search(offerDtoExpected.getName_product());
+        String amountUnitary = searchResult.getAmountUnitary();
+        String amountExpected = PaymentCalculator.getAmountPayment(quantity, amountUnitary);
 
         searchResult.selectProduct();
-        offerDetail.setColor(Color.RED.toString());
+        offerDetail.setColor(ColorEnum.PURPLE.getDescription());
         offerDetail.setQuantity(quantity);
-        offerDetail.addToCard();
+        offerDetail.addToCart();
         offerDetail.clickOnCheckout();
+        String amountActual = checkout.getTotalValue();
 
-        // offerDao.setOfferColor(Color.RED.toString(),offerDtoExpected.getIdmassas());
+        assertEquals(amountExpected, amountActual);
 
+        offerDao.setOfferColor(ColorEnum.PURPLE.getDescription(), offerDtoExpected.getIdmassas());
 
     }
 
-    @AfterEach
-    public void close() throws SQLException {
-        con.close();
+    @Test
+    public void shouldToRemoveProductOnCart() {
+        String messageExpected = "Your shopping cart is empty";
+        home.clickOnOptionSpecialOffer();
+        home.clickOnButtonSeeOffer();
+        offerDetail.addToCart();
+        cart.clickOnCart();
+        cart.removeProduct();
+
+        String messageActual = cart.getMessageEmptyCart();
+
+        assertEquals(messageExpected, messageActual);
     }
+
 }

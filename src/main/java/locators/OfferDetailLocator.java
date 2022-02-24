@@ -28,7 +28,7 @@ public class OfferDetailLocator {
 
     public OfferDetailLocator(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
+        this.wait = new WebDriverWait(driver, 45);
     }
 
     public OfferDto getDetailOffer() {
@@ -47,7 +47,7 @@ public class OfferDetailLocator {
         return offerDtoActual;
     }
 
-    public void addToCard() {
+    public void addToCart() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(addToCart))).click();
     }
 
@@ -62,6 +62,18 @@ public class OfferDetailLocator {
                 break;
             case "RED":
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorRed))).click();
+                break;
+            case "YELLOW":
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorYellow))).click();
+                break;
+            case "BLUE":
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorBlue))).click();
+                break;
+            case "BLACK":
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorBlack))).click();
+                break;
+            case "PURPLE":
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(colorPurple))).click();
                 break;
 
         }

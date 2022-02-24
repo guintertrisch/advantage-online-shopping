@@ -1,7 +1,5 @@
 import dto.OfferDto;
-import locators.HomePageLocator;
-import locators.OfferDetailLocator;
-import locators.SearchResultLocator;
+import locators.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +13,8 @@ public class BaseTest {
     public HomePageLocator home;
     public OfferDetailLocator offerDetail;
     public SearchResultLocator searchResult;
+    public CheckoutLocator checkout;
+    public CartLocator cart;
     public OfferDao offerDao;
     OfferDto offerDtoExpected;
 
@@ -30,6 +30,9 @@ public class BaseTest {
         home = new HomePageLocator(driver);
         offerDetail = new OfferDetailLocator(driver);
         searchResult = new SearchResultLocator(driver);
+        checkout = new CheckoutLocator(driver);
+        cart = new CartLocator(driver);
+
 
     }
 

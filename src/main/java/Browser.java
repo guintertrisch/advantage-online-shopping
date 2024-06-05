@@ -13,6 +13,8 @@ public class Browser {
             case "chrome":
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--start-maximized");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(options);
                 break;
